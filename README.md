@@ -14,6 +14,8 @@ Please run the solution with the following commands
 
 * Then run ```sh test.sh``` in another console tab
 * The code_challenge.csv file will be uploaded to python-server through saveData route.
+* So the readData route will read all of the lines from travel table.
+* The results can be checked on docker-compose logs tab
 
 ## Architeture
 The container revenuedriver-db has the MySQL database
