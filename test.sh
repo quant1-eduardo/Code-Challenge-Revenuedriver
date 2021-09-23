@@ -1,1 +1,1 @@
-cd app && curl -X POST -F file=@code_challenge.csv http://localhost:5000/read_file
+cd python-server && curl -X POST -F file=@code_challenge.csv http://localhost:5000/read_file

@@ -8,8 +8,8 @@ services:
     #  - ./mysql:/var/lib/mysql
     environment: 
       - MYSQL_ROOT_PASSWORD=fdkafj4314O
-      - MYSQL_DATABASE=vrdb
-      - MYSQL_USER=vrdb_user
+      - MYSQL_DATABASE=revenuedb
+      - MYSQL_USER=revenueb_user
       - MYSQL_PASSWORD=fkdjvmfd34985W
     command:
       --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
@@ -28,11 +28,14 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./app:/home/revenue/app
+      - ./python-server:/home/revenue/app
     networks:
       - revenuedriver-net
     environment: 
       - FLASK_ENV=development
+      - MYSQL_DATABASE=revenuedb
+      - MYSQL_USER=revenueb_user
+      - MYSQL_PASSWORD=fkdjvmfd34985W
 
 networks:
   revenuedriver-net:
