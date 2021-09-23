@@ -10,7 +10,9 @@ Please run the solution with the following commands
 &&
 ```ddocker-compose up```
 
-Then run sh test.sh in another console tab
+## Usage
+
+Then run ```sh test.sh``` in another console tab
 
 The container revenuedriver-db has the MySQL database
 And the container revenuedriver-python has 
