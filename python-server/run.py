@@ -31,6 +31,33 @@ def home():
     
     return "<p>Hello there!</p>"
 
+def preparingData(df):
+    df.rename(
+        columns=(
+            {
+                'Date': 'date',
+                'Ad Unit Name': 'adUnitName',
+                'Ad Unit ID': 'adUnitID',
+                'Typetag':'typetag',
+                'Revenue Source':'revenueSource',
+                'Market':'market',
+                'Queries':'queries',
+                'Clicks':'clicks',
+                'Impressions':'impressions',
+                'Page Rpm':'pageRpm',
+                'Impression Rpm':'impressionRpm',
+                'True Revenue':'trueRevenue',
+                'Coverage':'coverage',
+                'Ctr':'ctr'
+            }
+            ), 
+        inplace=True,
+        )
+    df['trueRevenue'] = df['trueRevenue'].str.replace(r'\D','',regex=True).astype(float)
+    df['coverage'] = df['coverage'].str.replace(r'\D','',regex=True).astype(float)
+    return df
+    
+
 @app.route("/read_file",methods=['POST','PUT'])
 def read_csv():
 
@@ -43,7 +70,7 @@ def read_csv():
         return "<p> Arquivo nao encontrado </p>"    
     filename=secure_filename(file.filename) 
     df = pd.read_csv(filename, error_bad_lines=False, sep=';')
-    print (df)
+    df = preparingData(df)
     print (df.head())
     print (df.info())
 
