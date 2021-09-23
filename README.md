@@ -12,7 +12,8 @@ Please run the solution with the following commands
 
 ## Usage
 
-Then run ```sh test.sh``` in another console tab
+* Then run ```sh test.sh``` in another console tab
+* The code_challenge.csv file will be uploaded to python-server throuth saveData route.
 
 The container revenuedriver-db has the MySQL database
 And the container revenuedriver-python has 
