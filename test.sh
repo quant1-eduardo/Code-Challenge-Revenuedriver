@@ -1,0 +1,1 @@
+cd app && curl -X POST -F file=@code_challenge.csv http://localhost:5000/read_file
