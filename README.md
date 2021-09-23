@@ -1,5 +1,11 @@
 # Code Challenge Revenuedriver
+This my Code Challenge solution for Revenue Driver backend developer job
 
-This code solution depends on Docker 
+## Instalation
+
+This code solution depends on [Docker](https://docker.com)
 Please, run docker-compose build and docker-compose up in a console tab
-Then, in another console tab run sh test.sh
+Then run sh test.sh in another console tab
+
+The container revenuedriver-db has the MySQL database
+And the container revenuedriver-python has 
