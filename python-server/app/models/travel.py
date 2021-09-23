@@ -18,3 +18,7 @@ class Travel (db.Model):
     coverage = db.Column(db.Float)
     ctr = db.Column(db.Float)
 
+    def show(self):
+        print(self.adUnitID)
+        print(self.adUnitName)
+        print('____________________')

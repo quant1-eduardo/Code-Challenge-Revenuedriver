@@ -6,11 +6,6 @@ from app import app, db
 from app.models.travel import Travel
 
 
-
-
-#db.session.commit()
-
-
 @app.route("/")
 def home():
     
@@ -61,8 +56,8 @@ def saveLine(dfLine):
         )
     db.session.add(new)
         
-@app.route("/read_file",methods=['POST','PUT'])
-def read_csv():
+@app.route("/saveData",methods=['POST','PUT'])
+def saveData():
     import pandas as pd
     try:
         file = request.files['file']
@@ -75,13 +70,16 @@ def read_csv():
     print (df.info())
 
     print (df.describe())
-    #df.to_sql(name='travel',con=db.engine,index=False, if_exists='append')
-    #df.map(saveLine)
     map(saveLine,df)
     db.session.commit()
 
     print("Data file save successfully:")
-    print(Travel.query.all())
+        
     return "<p> Data file saved successfully </p>"
-    
 
+@app.route("/readData",methods=['POST','PUT'])
+def readData():
+    travels = Travel.query.all()
+    for t in travels:
+        t.show()
+    return '\n Data readen successfully \n Please check the server logs \n '
