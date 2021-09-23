@@ -3,20 +3,18 @@ services:
   revenuedriver-db:
     restart: always
     image: mysql:5.7
-    container_name: revenuedriver-db 
+    container_name: revenuedriver-db
     #volumes: 
     #  - ./mysql:/var/lib/mysql
     environment: 
       - MYSQL_ROOT_PASSWORD=fdkafj4314O
       - MYSQL_DATABASE=revenuedb
-      - MYSQL_USER=revenueb_user
+      - MYSQL_USER=revenuedb_user
       - MYSQL_PASSWORD=fkdjvmfd34985W
     command:
       --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
     networks:
       - revenuedriver-net
-    #ports: 
-    #  - 3307:3306
   revenuedriver-python:
     restart: always
     build: .
@@ -34,7 +32,7 @@ services:
     environment: 
       - FLASK_ENV=development
       - MYSQL_DATABASE=revenuedb
-      - MYSQL_USER=revenueb_user
+      - MYSQL_USER=revenuedb_user
       - MYSQL_PASSWORD=fkdjvmfd34985W
 
 networks:

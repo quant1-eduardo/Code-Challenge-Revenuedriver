@@ -7,23 +7,8 @@ from app.models.travel import Travel
 
 
 
-db.session.add(Travel(adUnitID=1,
-                    date=datetime.strptime('01/09/21','%d/%m/%y').date(), 
-                    adUnitName= 'ad_unit_name_1',
-                    typetag=900001,
-                    revenueSource='traffic',
-                    market='Portugal',
-                    queries=2,
-                    clicks=0,
-                    impressions=float(0),
-                    pageRpm=float(0),
-                    impressionRpm=float(0),
-                    trueRevenue=float(0),
-                    coverage=float(0),
-                    ctr=float(0)))
-db.create_all()
 
-db.session.commit()
+#db.session.commit()
 
 
 @app.route("/")
@@ -58,16 +43,31 @@ def preparingData(df):
     return df
     
 
+def saveLine(dfLine):
+    new = Travel(adUnitID=dfLine['adUnitID'],
+            date=dfLine['date'], 
+            adUnitName = dfLine['adUnitName'],
+            typetag = dfLine['typetag'],
+            revenueSource = dfLine['revenueSource'],
+            market = dfLine['market'],
+            queries = dfLine['queries'],
+            clicks = dfLine['clicks'],
+            impressions = dfLine['impressions'],
+            pageRpm = dfLine['pageRpm'],
+            impressionRpm = dfLine['impressionRpm'],
+            trueRevenue = dfLine['trueRevenue'],
+            coverage = dfLine['coverage'],
+            ctr = dfLine['ctr']
+        )
+    db.session.add(new)
+        
 @app.route("/read_file",methods=['POST','PUT'])
 def read_csv():
-
     import pandas as pd
-    from sqlalchemy.types import Integer, Text, String, Date
-    
     try:
         file = request.files['file']
     except:
-        return "<p> Arquivo nao encontrado </p>"    
+        return "<p> File not found </p>"    
     filename=secure_filename(file.filename) 
     df = pd.read_csv(filename, error_bad_lines=False, sep=';')
     df = preparingData(df)
@@ -75,7 +75,13 @@ def read_csv():
     print (df.info())
 
     print (df.describe())
-    df.to_sql(name='travel',con=db.engine,index=False, if_exists='replace')
-    return "OK"
+    #df.to_sql(name='travel',con=db.engine,index=False, if_exists='append')
+    #df.map(saveLine)
+    map(saveLine,df)
+    db.session.commit()
+
+    print("Data file save successfully:")
+    print(Travel.query.all())
+    return "<p> Data file saved successfully </p>"
     
 

@@ -3,9 +3,8 @@ from app import db
 class Travel (db.Model):   
     #Date;Ad Unit Name;Ad Unit ID;Typetag;Revenue Source;Market;Queries;Clicks;Impressions;Page Rpm;Impression Rpm;True Revenue;Coverage;Ctr
     __tablename__ = "travel"
-    id = db.Column (db.Integer, primary_key=True)
     date = db.Column(db.Date)
-    adUnitID = db.Column (db.Integer)
+    adUnitID = db.Column (db.Integer,primary_key=True)
     adUnitName = db.Column(db.String)
     typetag = db.Column(db.Integer)
     revenueSource = db.Column(db.String)
@@ -18,3 +17,4 @@ class Travel (db.Model):
     trueRevenue = db.Column(db.Float)
     coverage = db.Column(db.Float)
     ctr = db.Column(db.Float)
+
