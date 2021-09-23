@@ -64,7 +64,7 @@ def saveData():
     except:
         return "<p> File not found </p>"    
     filename=secure_filename(file.filename) 
-    df = pd.read_csv(filename, error_bad_lines=False, sep=';')
+    df = pd.read_csv(filename,  sep=';')
     df = preparingData(df)
     print (df.head())
     print (df.info())
