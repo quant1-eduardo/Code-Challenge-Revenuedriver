@@ -17,4 +17,4 @@ Please run the solution with the following commands
 
 ## Architeture
 The container revenuedriver-db has the MySQL database
-And the container revenuedriver-python has 
+And the container revenuedriver-python has the python server application
