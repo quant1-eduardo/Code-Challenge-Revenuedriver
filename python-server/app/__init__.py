@@ -6,6 +6,8 @@ from os import environ
 app = Flask(__name__)
 
 dbName = environ['MYSQL_DATABASE']
+print('*****************************************************************')
+print(dbName)
 dbuser = environ['MYSQL_USER']
 dbpass = environ['MYSQL_PASSWORD']
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:fdkafj4314O@revenuedriver-db"
